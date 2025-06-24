@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人博客 | 生活与成长</title>
+    <title>LittleWhale0531 的个人博客</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -14,31 +14,33 @@
         }
         
         :root {
-            --primary: #4a6fa5;
-            --secondary: #6b8cae;
-            --accent: #e76f51;
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #3182ce;
             --light: #f8f9fa;
-            --dark: #343a40;
-            --gray: #6c757d;
-            --light-bg: #f1f5f9;
+            --dark: #2d3748;
+            --ocean: #0a2647;
+            --deep-blue: #144272;
+            --light-blue: #2c74b3;
             --transition: all 0.3s ease;
         }
         
         body {
-            background-color: var(--light-bg);
+            background-color: #f0f8ff;
             color: var(--dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         /* 头部样式 */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--ocean));
             color: white;
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
         }
         
         .container {
@@ -82,10 +84,17 @@
             padding: 0.5rem 0.8rem;
             border-radius: 4px;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links a i {
+            margin-right: 8px;
         }
         
         .nav-links a:hover {
             background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
         }
         
         .nav-links a.active {
@@ -100,41 +109,58 @@
         
         /* Hero区域 */
         .hero {
-            background: linear-gradient(rgba(74, 111, 165, 0.8), rgba(74, 111, 165, 0.8)), 
-                        url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background: linear-gradient(rgba(10, 38, 71, 0.85), rgba(10, 38, 71, 0.9)), 
+                        url('https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
-            height: 400px;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
-            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #f0f8ff, transparent);
+            z-index: 1;
         }
         
         .hero-content {
             max-width: 800px;
+            z-index: 2;
         }
         
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero .btn {
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
         }
         
         /* 内容区域 */
         section {
-            padding: 4rem 0;
-        }
-        
-        section:nth-child(odd) {
-            background-color: white;
+            padding: 6rem 0;
         }
         
         .section-title {
@@ -144,157 +170,129 @@
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--primary);
             display: inline-block;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
         }
         
         .section-title h2::after {
             content: '';
             display: block;
-            width: 80px;
+            width: 100px;
             height: 4px;
             background-color: var(--accent);
-            margin: 0.5rem auto;
+            margin: 1rem auto;
+            border-radius: 2px;
         }
         
         .section-title p {
-            color: var(--gray);
+            color: var(--dark);
             max-width: 700px;
             margin: 0 auto;
+            font-size: 1.2rem;
         }
         
         /* 内容卡片 */
         .content-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
         
         .card {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
             transition: var(--transition);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
         
-        .card-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .card:hover .card-img img {
-            transform: scale(1.1);
+        .card-icon {
+            background: linear-gradient(135deg, var(--accent), var(--light-blue));
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
         }
         
         .card-content {
-            padding: 1.5rem;
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
             color: var(--primary);
         }
         
         .card p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 1.8rem;
+            flex-grow: 1;
         }
         
         .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: #d1583d;
-            transform: translateY(-3px);
-        }
-        
-        /* 关于我区域 */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-        
-        .about-img {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-img img {
-            width: 100%;
-            display: block;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .about-text p {
-            margin-bottom: 1rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--accent), var(--light-blue));
             color: white;
-            border-radius: 50%;
+            padding: 0.9rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
             transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(49, 130, 206, 0.3);
         }
         
-        .social-links a:hover {
-            background-color: var(--accent);
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #2b6cb0, #2c74b3);
             transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(49, 130, 206, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
         }
         
         /* 页脚 */
         footer {
-            background-color: var(--dark);
+            background-color: var(--ocean);
             color: white;
-            padding: 3rem 0 1.5rem;
+            padding: 4rem 0 2rem;
+            position: relative;
         }
         
         .footer-content {
@@ -305,7 +303,7 @@
         }
         
         .footer-column h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 1.5rem;
             position: relative;
             padding-bottom: 0.5rem;
@@ -317,12 +315,13 @@
             bottom: 0;
             left: 0;
             width: 50px;
-            height: 2px;
+            height: 3px;
             background-color: var(--accent);
+            border-radius: 2px;
         }
         
         .footer-column p, .footer-column li {
-            color: #ddd;
+            color: #cbd5e0;
             margin-bottom: 0.8rem;
         }
         
@@ -331,32 +330,74 @@
         }
         
         .footer-column a {
-            color: #ddd;
+            color: #cbd5e0;
             text-decoration: none;
             transition: var(--transition);
+            display: inline-block;
         }
         
         .footer-column a:hover {
             color: var(--accent);
-            padding-left: 5px;
+            transform: translateX(5px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 1.5rem;
+            padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 0.9rem;
+            color: #a0aec0;
+            font-size: 0.95rem;
+        }
+        
+        .whale-animation {
+            position: absolute;
+            bottom: 20px;
+            right: -200px;
+            animation: swim 30s linear infinite;
+            font-size: 5rem;
+            opacity: 0.7;
+        }
+        
+        /* 动画 */
+        @keyframes swim {
+            0% {
+                transform: translateX(0) scaleX(-1);
+            }
+            100% {
+                transform: translateX(-150vw) scaleX(-1);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* 响应式设计 */
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
-            .about-content {
-                flex-direction: column;
+            .section-title h2 {
+                font-size: 2.3rem;
             }
         }
         
@@ -383,15 +424,23 @@
             }
             
             .nav-links li {
-                margin: 0.5rem 0;
+                margin: 0.8rem 0;
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
             }
             
             .section-title h2 {
                 font-size: 2rem;
+            }
+            
+            .content-cards {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -402,14 +451,13 @@
         <div class="container">
             <nav>
                 <div class="logo">
-                    <i class="fas fa-blog"></i>
-                    <span>个人博客</span>
+                    <i class="fas fa-water"></i>
+                    <span>LittleWhale0531</span>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#about" class="active">关于我</a></li>
-                    <li><a href="#finance">投资理财</a></li>
-                    <li><a href="#tech">技术学习</a></li>
-                    <li><a href="#happiness">幸福感</a></li>
+                    <li><a href="#about" class="active"><i class="fas fa-user"></i>关于我</a></li>
+                    <li><a href="#finance"><i class="fas fa-chart-line"></i>投资理财</a></li>
+                    <li><a href="#tech"><i class="fas fa-laptop-code"></i>技术学习</a></li>
                 </ul>
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
@@ -419,77 +467,61 @@
     </header>
 
     <!-- Hero区域 -->
-    <div class="hero">
+    <div class="hero" id="about">
         <div class="hero-content">
-            <h1>记录成长，分享价值</h1>
-            <p>探索生活、技术、投资与幸福的艺术</p>
-            <a href="#about" class="btn">了解更多</a>
+            <h1>Hi, 我是 @LittleWhale0531</h1>
+            <p>在广告投放算法、广告投放反作弊算法拥有6年经验</p>
+            <a href="#finance" class="btn">探索我的博客 <i class="fas fa-arrow-down"></i></a>
+        </div>
+        <div class="whale-animation">
+            <i class="fas fa-fish"></i>
         </div>
     </div>
 
-    <!-- 关于我 -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>关于我</h2>
-                <p>一个热爱生活、追求成长的技术爱好者，喜欢探索世界的多样性和可能性</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="个人照片">
-                </div>
-                <div class="about-text">
-                    <h3>你好，我是张明</h3>
-                    <p>拥有8年软件开发经验的全栈工程师，专注于构建高性能、用户友好的应用程序。在技术之外，我对投资理财和心理学有着浓厚的兴趣。</p>
-                    <p>我相信生活是一个不断学习和成长的过程。通过这个博客，我希望分享我的经验、见解和学习心得，帮助他人找到提升生活质量和幸福感的方法。</p>
-                    <p>工作之余，我喜欢阅读、旅行、摄影和烹饪。这些爱好让我保持好奇心，并不断拓展视野。</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- 投资理财 -->
-    <section id="finance" style="background-color: var(--light-bg);">
+    <section id="finance">
         <div class="container">
             <div class="section-title">
                 <h2>投资理财</h2>
-                <p>探索财富增长的策略，建立健康的财务习惯，实现财务自由</p>
+                <p>分享个人投资理念、策略和工具，不构成任何投资建议的纯分享</p>
             </div>
             <div class="content-cards">
                 <div class="card">
-                    <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="投资基础">
+                    <div class="card-icon">
+                        <i class="fas fa-file-pdf"></i>
                     </div>
                     <div class="card-content">
-                        <h3>投资入门指南</h3>
-                        <p>了解股票、债券、基金等基本投资工具，建立适合自己的投资组合。</p>
-                        <a href="#" class="btn">阅读更多</a>
+                        <h3>投资理念与策略</h3>
+                        <p>探索我的投资理念、资产配置策略和实际操作记录。内容涵盖投资目标、投前准备、品种武器库和投资策略等核心内容。</p>
+                        <a href="不构成任何投资建议的纯分享.pdf" class="btn" target="_blank">
+                            <i class="fas fa-download"></i>查看PDF文档
+                        </a>
                     </div>
                 </div>
+                
                 <div class="card">
-                    <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1311&q=80" alt="财务规划">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-pie"></i>
                     </div>
                     <div class="card-content">
-                        <h3>财务规划策略</h3>
-                        <p>如何制定个人财务计划，设定短期和长期财务目标，实现财务自由。</p>
-                        <a href="#" class="btn">阅读更多</a>
+                        <h3>资产配置</h3>
+                        <p>了解如何建立健康的资产配置结构，平衡风险与收益。包含家庭资产负债表、现金流量表分析和保险保障规划。</p>
+                        <a href="不构成任何投资建议的纯分享.pdf#page=2" class="btn" target="_blank">
+                            <i class="fas fa-book-open"></i>阅读资产配置
+                        </a>
                     </div>
                 </div>
+                
                 <div class="card">
-                    <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="市场分析">
+                    <div class="card-icon">
+                        <i class="fas fa-balance-scale"></i>
                     </div>
                     <div class="card-content">
-                        <h3>市场趋势分析</h3>
-                        <p>解读当前经济形势和投资机会，把握市场脉搏，做出明智投资决策。</p>
-                        <a href="#" class="btn">阅读更多</a>
+                        <h3>历史收益与反思</h3>
+                        <p>查看我的投资历史收益记录，包括成功经验和失败教训。投资是一个长期的学习和优化过程。</p>
+                        <a href="不构成任何投资建议的纯分享.pdf#page=6" class="btn" target="_blank">
+                            <i class="fas fa-history"></i>查看历史收益
+                        </a>
                     </div>
                 </div>
             </div>
@@ -497,83 +529,49 @@
     </section>
 
     <!-- 技术学习 -->
-    <section id="tech">
+    <section id="tech" style="background-color: #e6f2ff;">
         <div class="container">
             <div class="section-title">
                 <h2>技术学习</h2>
-                <p>分享编程技巧、开发经验和前沿技术，持续提升技术能力</p>
+                <p>探索人工智能前沿技术、模型原理和商业应用</p>
             </div>
             <div class="content-cards">
                 <div class="card">
-                    <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Web开发">
+                    <div class="card-icon">
+                        <i class="fas fa-brain"></i>
                     </div>
                     <div class="card-content">
-                        <h3>现代Web开发</h3>
-                        <p>探索React、Vue等前端框架，以及Node.js后端开发的最佳实践。</p>
-                        <a href="#" class="btn">阅读更多</a>
+                        <h3>AI模型技术解析</h3>
+                        <p>深入了解大语言模型的技术原理，包括预训练、监督微调和强化学习等关键概念。</p>
+                        <a href="关于AI的1%灵感 - 4月报.pdf" class="btn" target="_blank">
+                            <i class="fas fa-download"></i>查看完整PDF
+                        </a>
                     </div>
                 </div>
+                
                 <div class="card">
-                    <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="AI与机器学习">
+                    <div class="card-icon">
+                        <i class="fas fa-robot"></i>
                     </div>
                     <div class="card-content">
-                        <h3>AI与机器学习</h3>
-                        <p>从基础到实践，了解人工智能和机器学习的最新发展和应用。</p>
-                        <a href="#" class="btn">阅读更多</a>
+                        <h3>OpenAI模型演进</h3>
+                        <p>探索OpenAI各代模型的区别与发展路径，了解AGI的五个阶段和各模型的特点。</p>
+                        <a href="关于AI的1%灵感 - 4月报.pdf#page=1" class="btn" target="_blank">
+                            <i class="fas fa-book-open"></i>阅读模型演进
+                        </a>
                     </div>
                 </div>
+                
                 <div class="card">
-                    <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="DevOps">
+                    <div class="card-icon">
+                        <i class="fas fa-lightbulb"></i>
                     </div>
                     <div class="card-content">
-                        <h3>DevOps实践</h3>
-                        <p>构建高效的开发运维流程，实现持续集成和持续部署。</p>
-                        <a href="#" class="btn">阅读更多</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 幸福感最大化 -->
-    <section id="happiness" style="background-color: var(--light-bg);">
-        <div class="container">
-            <div class="section-title">
-                <h2>幸福感最大化</h2>
-                <p>探索提升生活质量和幸福感的方法，实现身心平衡和充实生活</p>
-            </div>
-            <div class="content-cards">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="正念冥想">
-                    </div>
-                    <div class="card-content">
-                        <h3>正念与冥想</h3>
-                        <p>学习如何通过正念练习减少压力，提高专注力和生活满意度。</p>
-                        <a href="#" class="btn">阅读更多</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="健康习惯">
-                    </div>
-                    <div class="card-content">
-                        <h3>健康生活习惯</h3>
-                        <p>建立可持续的健康习惯，包括饮食、运动和睡眠，提升整体幸福感。</p>
-                        <a href="#" class="btn">阅读更多</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="人际关系">
-                    </div>
-                    <div class="card-content">
-                        <h3>人际关系建设</h3>
-                        <p>培养有意义的社交关系，学习有效沟通技巧，增强社会支持网络。</p>
-                        <a href="#" class="btn">阅读更多</a>
+                        <h3>商业认知与应用</h3>
+                        <p>了解AI在商业领域的应用前景和思考方式，积累对技术商业化的认知和理解。</p>
+                        <a href="关于AI的1%灵感 - 4月报.pdf#page=10" class="btn" target="_blank">
+                            <i class="fas fa-briefcase"></i>探索商业认知
+                        </a>
                     </div>
                 </div>
             </div>
@@ -586,42 +584,40 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>关于博客</h3>
-                    <p>这个博客记录了我的个人成长历程，分享在技术、投资和提升生活幸福感方面的见解和经验。</p>
-                    <p>希望通过分享，能够帮助他人找到适合自己的成长路径。</p>
+                    <p>这个博客分享我在算法开发和投资理财方面的经验与思考，记录个人成长历程。</p>
+                    <p>所有内容均为个人观点，不构成任何专业建议。</p>
                 </div>
                 <div class="footer-column">
                     <h3>快速链接</h3>
                     <ul>
-                        <li><a href="#about">关于我</a></li>
-                        <li><a href="#finance">投资理财</a></li>
-                        <li><a href="#tech">技术学习</a></li>
-                        <li><a href="#happiness">幸福感</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> 关于我</a></li>
+                        <li><a href="#finance"><i class="fas fa-chevron-right"></i> 投资理财</a></li>
+                        <li><a href="#tech"><i class="fas fa-chevron-right"></i> 技术学习</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>最新文章</h3>
+                    <h3>资源下载</h3>
                     <ul>
-                        <li><a href="#">2023年投资趋势分析</a></li>
-                        <li><a href="#">React 18新特性解析</a></li>
-                        <li><a href="#">提升工作效率的5个习惯</a></li>
-                        <li><a href="#">正念冥想入门指南</a></li>
+                        <li><a href="不构成任何投资建议的纯分享.pdf" target="_blank"><i class="fas fa-file-pdf"></i> 投资理财PDF</a></li>
+                        <li><a href="关于AI的1%灵感 - 4月报.pdf" target="_blank"><i class="fas fa-file-pdf"></i> 技术学习PDF</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>联系我</h3>
-                    <p><i class="fas fa-envelope"></i> contact@example.com</p>
-                    <p><i class="fas fa-phone"></i> +86 123 4567 8910</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    <p><i class="fas fa-envelope"></i> littlewhale@example.com</p>
+                    <div class="social-links" style="display: flex; gap: 15px; margin-top: 15px;">
+                        <a href="#" style="font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+                        <a href="#" style="font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" style="font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 个人博客网站. 保留所有权利。</p>
+                <p>&copy; 2023 LittleWhale0531 的个人博客. 保留所有权利。</p>
             </div>
+        </div>
+        <div class="whale-animation">
+            <i class="fas fa-fish"></i>
         </div>
     </footer>
 
@@ -662,14 +658,14 @@
         
         // 滚动时更新活动链接
         window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
+            const sections = document.querySelectorAll('section, .hero');
             const navLinks = document.querySelectorAll('.nav-links a');
             
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
+                    current = section.getAttribute('id') || 'about';
                 }
             });
             
@@ -679,6 +675,12 @@
                     link.classList.add('active');
                 }
             });
+        });
+        
+        // 鲸鱼动画
+        const whales = document.querySelectorAll('.whale-animation');
+        whales.forEach((whale, index) => {
+            whale.style.animationDelay = `${index * 5}s`;
         });
     </script>
 </body>
