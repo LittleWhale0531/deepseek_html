@@ -3,428 +3,524 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LittleWhale0531 的个人博客</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Alex Chen | 个人博客</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #8b5cf6;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        :root {
-            --primary: #1a365d;
-            --secondary: #2c5282;
-            --accent: #3182ce;
-            --light: #f8f9fa;
-            --dark: #2d3748;
-            --ocean: #0a2647;
-            --deep-blue: #144272;
-            --light-blue: #2c74b3;
-            --transition: all 0.3s ease;
-        }
-        
+
         body {
-            background-color: #f0f8ff;
-            color: var(--dark);
+            font-family: 'Open Sans', sans-serif;
             line-height: 1.6;
+            color: var(--secondary);
+            background-color: #f1f5f9;
             overflow-x: hidden;
         }
-        
-        /* 头部样式 */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--ocean));
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
         }
-        
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
         .container {
-            width: 90%;
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-        }
-        
-        .nav-links a i {
-            margin-right: 8px;
-        }
-        
-        .nav-links a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-        }
-        
-        .nav-links a.active {
-            background-color: var(--accent);
-        }
-        
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-        
-        /* Hero区域 */
-        .hero {
-            background: linear-gradient(rgba(10, 38, 71, 0.85), rgba(10, 38, 71, 0.9)), 
-                        url('https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to top, #f0f8ff, transparent);
-            z-index: 1;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            animation: fadeInDown 1s ease;
-        }
-        
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s forwards;
-            opacity: 0;
-        }
-        
-        .hero .btn {
-            animation: fadeInUp 1s ease 0.4s forwards;
-            opacity: 0;
-        }
-        
-        /* 内容区域 */
-        section {
-            padding: 6rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.8rem;
-            color: var(--primary);
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background-color: var(--accent);
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-        
-        .section-title p {
-            color: var(--dark);
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-        }
-        
-        /* 内容卡片 */
-        .content-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-        
-        .card {
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-            transition: var(--transition);
-            position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-        
-        .card-icon {
-            background: linear-gradient(135deg, var(--accent), var(--light-blue));
-            height: 160px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
-        }
-        
-        .card-content {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.2rem;
-            color: var(--primary);
-        }
-        
-        .card p {
-            color: var(--dark);
-            margin-bottom: 1.8rem;
-            flex-grow: 1;
-        }
-        
+
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--accent), var(--light-blue));
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--primary);
             color: white;
-            padding: 0.9rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
+            border-radius: 6px;
             font-weight: 600;
             transition: var(--transition);
             border: none;
             cursor: pointer;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(49, 130, 206, 0.3);
+            font-size: 16px;
         }
-        
-        .btn i {
-            margin-right: 8px;
-        }
-        
+
         .btn:hover {
-            background: linear-gradient(135deg, #2b6cb0, #2c74b3);
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(49, 130, 206, 0.4);
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+
         .btn-outline {
             background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-            box-shadow: none;
+            border: 2px solid var(--primary);
+            color: var(--primary);
         }
-        
+
         .btn-outline:hover {
-            background: var(--accent);
+            background: var(--primary);
             color: white;
         }
-        
-        /* 页脚 */
-        footer {
-            background-color: var(--ocean);
-            color: white;
-            padding: 4rem 0 2rem;
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--secondary);
+            font-weight: 600;
             position: relative;
         }
-        
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .hero-btns .btn {
+            background: white;
+            color: var(--primary);
+        }
+
+        .hero-btns .btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-btns .btn-outline {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .hero-btns .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Section Common Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .section-header p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .section-header .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Work Experience Section */
+        .experience-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .experience-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .experience-card .company {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .company-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .company-info .duration {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .responsibilities {
+            list-style-type: none;
+        }
+
+        .responsibilities li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .responsibilities li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Tech Docs Section */
+        .tech-docs {
+            background: var(--light);
+        }
+
+        .docs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .doc-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .doc-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .doc-content {
+            padding: 25px;
+        }
+
+        .doc-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .doc-content .meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .doc-content .meta i {
+            margin-right: 5px;
+        }
+
+        .doc-content p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        /* Investment Section */
+        .investment-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .investment-record {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            gap: 20px;
+            transition: var(--transition);
+        }
+
+        .investment-record:hover {
+            transform: translateX(5px);
+        }
+
+        .investment-icon {
+            min-width: 60px;
+            height: 60px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .investment-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .investment-content .date {
+            color: var(--gray);
+            margin-bottom: 10px;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .investment-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 40px;
+            margin-bottom: 40px;
         }
-        
-        .footer-column h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
+
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: white;
         }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent);
-            border-radius: 2px;
+
+        .footer-col p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
         }
-        
-        .footer-column p, .footer-column li {
-            color: #cbd5e0;
-            margin-bottom: 0.8rem;
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
         }
-        
-        .footer-column ul {
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .quick-links {
             list-style: none;
         }
-        
-        .footer-column a {
-            color: #cbd5e0;
-            text-decoration: none;
+
+        .quick-links li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links a {
+            color: #cbd5e1;
             transition: var(--transition);
-            display: inline-block;
         }
-        
-        .footer-column a:hover {
-            color: var(--accent);
-            transform: translateX(5px);
+
+        .quick-links a:hover {
+            color: white;
+            padding-left: 5px;
         }
-        
+
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #a0aec0;
-            font-size: 0.95rem;
+            color: #94a3b8;
+            font-size: 0.9rem;
         }
-        
-        .whale-animation {
-            position: absolute;
-            bottom: 20px;
-            right: -200px;
-            animation: swim 30s linear infinite;
-            font-size: 5rem;
-            opacity: 0.7;
-        }
-        
-        /* 动画 */
-        @keyframes swim {
-            0% {
-                transform: translateX(0) scaleX(-1);
-            }
-            100% {
-                transform: translateX(-150vw) scaleX(-1);
-            }
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* 响应式设计 */
+
+        /* Responsive Design */
         @media (max-width: 992px) {
+            .experience-container {
+                grid-template-columns: 1fr;
+            }
+            
             .hero h1 {
                 font-size: 2.8rem;
             }
-            
-            .section-title h2 {
-                font-size: 2.3rem;
-            }
         }
-        
+
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
             .nav-links {
-                position: absolute;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background-color: var(--primary);
-                flex-direction: column;
-                align-items: center;
-                padding: 1rem 0;
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: var(--transition);
+                display: none;
             }
             
-            .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            
-            .nav-links li {
-                margin: 0.8rem 0;
+            .mobile-toggle {
+                display: block;
             }
             
             .hero h1 {
@@ -435,252 +531,339 @@
                 font-size: 1.1rem;
             }
             
-            .section-title h2 {
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-header h2 {
                 font-size: 2rem;
             }
             
-            .content-cards {
+            .investment-record {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .docs-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            section {
+                padding: 60px 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 头部导航 -->
+    <!-- Header -->
     <header>
         <div class="container">
-            <nav>
-                <div class="logo">
-                    <i class="fas fa-water"></i>
-                    <span>LittleWhale0531</span>
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-code"></i>
+                    Alex Chen
+                </a>
+                <div class="nav-links">
+                    <a href="#experience">工作经历</a>
+                    <a href="#tech-docs">技术文档</a>
+                    <a href="#investment">投资记录</a>
+                    <a href="#contact">联系我</a>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="#about" class="active"><i class="fas fa-user"></i>关于我</a></li>
-                    <li><a href="#finance"><i class="fas fa-chart-line"></i>投资理财</a></li>
-                    <li><a href="#tech"><i class="fas fa-laptop-code"></i>技术学习</a></li>
-                </ul>
-                <div class="menu-toggle">
+                <button class="mobile-toggle">
                     <i class="fas fa-bars"></i>
-                </div>
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Hero区域 -->
-    <div class="hero" id="about">
-        <div class="hero-content">
-            <h1>Hi, 我是 @LittleWhale0531</h1>
-            <p>在广告投放算法、广告投放反作弊算法拥有6年经验</p>
-            <a href="#finance" class="btn">探索我的博客 <i class="fas fa-arrow-down"></i></a>
-        </div>
-        <div class="whale-animation">
-            <i class="fas fa-fish"></i>
-        </div>
-    </div>
-
-    <!-- 投资理财 -->
-    <section id="finance">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <div class="section-title">
-                <h2>投资理财</h2>
-                <p>分享个人投资理念、策略和工具，不构成任何投资建议的纯分享</p>
+            <div class="hero-content">
+                <h1>技术探索者 & 价值投资者</h1>
+                <p>十年全栈开发经验，专注于前沿技术研究和价值投资实践。分享技术洞见与投资心得，创造可持续价值。</p>
+                <div class="hero-btns">
+                    <a href="#tech-docs" class="btn">探索技术文档</a>
+                    <a href="#investment" class="btn btn-outline">查看投资记录</a>
+                </div>
             </div>
-            <div class="content-cards">
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-file-pdf"></i>
+        </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>工作经历</h2>
+                <div class="divider"></div>
+                <p>十年技术生涯，从工程师到技术负责人，积累丰富的全栈开发与团队管理经验</p>
+            </div>
+            
+            <div class="experience-container">
+                <!-- Experience 1 -->
+                <div class="experience-card">
+                    <div class="company">
+                        <div class="company-logo">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="company-info">
+                            <h3>Google</h3>
+                            <span class="duration">2020年 - 至今</span>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <h3>投资理念与策略</h3>
-                        <p>探索我的投资理念、资产配置策略和实际操作记录。内容涵盖投资目标、投前准备、品种武器库和投资策略等核心内容。</p>
-                        <a href="不构成任何投资建议的纯分享.pdf" class="btn" target="_blank">
-                            <i class="fas fa-download"></i>查看PDF文档
-                        </a>
+                    <h4 class="job-title">高级全栈工程师</h4>
+                    <ul class="responsibilities">
+                        <li>负责核心产品的架构设计与开发，服务全球数亿用户</li>
+                        <li>优化系统性能，提升页面加载速度40%以上</li>
+                        <li>带领10人团队实施敏捷开发，提高团队效率30%</li>
+                        <li>主导技术选型，引入React和Node.js技术栈</li>
+                    </ul>
+                </div>
+                
+                <!-- Experience 2 -->
+                <div class="experience-card">
+                    <div class="company">
+                        <div class="company-logo">
+                            <i class="fab fa-microsoft"></i>
+                        </div>
+                        <div class="company-info">
+                            <h3>Microsoft</h3>
+                            <span class="duration">2017年 - 2020年</span>
+                        </div>
+                    </div>
+                    <h4 class="job-title">前端技术主管</h4>
+                    <ul class="responsibilities">
+                        <li>负责企业级SaaS产品的前端架构设计与实现</li>
+                        <li>建立前端技术规范，提升团队协作效率</li>
+                        <li>实施组件化开发，代码复用率提高60%</li>
+                        <li>指导初级工程师，组织技术分享会</li>
+                    </ul>
+                </div>
+                
+                <!-- Experience 3 -->
+                <div class="experience-card">
+                    <div class="company">
+                        <div class="company-logo">
+                            <i class="fab fa-amazon"></i>
+                        </div>
+                        <div class="company-info">
+                            <h3>Amazon</h3>
+                            <span class="duration">2015年 - 2017年</span>
+                        </div>
+                    </div>
+                    <h4 class="job-title">后端开发工程师</h4>
+                    <ul class="responsibilities">
+                        <li>参与电商平台核心API的设计与开发</li>
+                        <li>构建高可用微服务架构，处理每秒数千请求</li>
+                        <li>优化数据库查询，将响应时间减少50%</li>
+                        <li>实现自动化部署流程，减少部署时间70%</li>
+                    </ul>
+                </div>
+                
+                <!-- Experience 4 -->
+                <div class="experience-card">
+                    <div class="company">
+                        <div class="company-logo">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="company-info">
+                            <h3>清华大学</h3>
+                            <span class="duration">2011年 - 2015年</span>
+                        </div>
+                    </div>
+                    <h4 class="job-title">计算机科学与技术学士</h4>
+                    <ul class="responsibilities">
+                        <li>主修计算机科学与技术，辅修金融学</li>
+                        <li>ACM程序设计竞赛亚洲区域赛铜奖</li>
+                        <li>参与多个开源项目贡献，GitHub排名前1%</li>
+                        <li>发表3篇关于分布式系统的学术论文</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Docs Section -->
+    <section id="tech-docs" class="tech-docs">
+        <div class="container">
+            <div class="section-header">
+                <h2>技术文档</h2>
+                <div class="divider"></div>
+                <p>分享前沿技术、架构设计与开发实践，所有文章发布于CSDN博客</p>
+            </div>
+            
+            <div class="docs-container">
+                <!-- Doc 1 -->
+                <div class="doc-card">
+                    <div class="doc-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')"></div>
+                    <div class="doc-content">
+                        <h3>深入理解React Hooks原理</h3>
+                        <div class="meta">
+                            <span><i class="far fa-calendar"></i> 2023-08-15</span>
+                            <span><i class="far fa-eye"></i> 12.8K阅读</span>
+                            <span><i class="far fa-comment"></i> 86评论</span>
+                        </div>
+                        <p>全面解析React Hooks的设计思想与实现原理，分享最佳实践与常见问题解决方案。</p>
+                        <a href="https://blog.csdn.net/qq_41697157/article/details/12345678" class="btn btn-outline">阅读全文</a>
                     </div>
                 </div>
                 
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3>资产配置</h3>
-                        <p>了解如何建立健康的资产配置结构，平衡风险与收益。包含家庭资产负债表、现金流量表分析和保险保障规划。</p>
-                        <a href="不构成任何投资建议的纯分享.pdf#page=2" class="btn" target="_blank">
-                            <i class="fas fa-book-open"></i>阅读资产配置
-                        </a>
+                <!-- Doc 2 -->
+                <div class="doc-card">
+                    <div class="doc-image" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1700&q=80')"></div>
+                    <div class="doc-content">
+                        <h3>微服务架构实战指南</h3>
+                        <div class="meta">
+                            <span><i class="far fa-calendar"></i> 2023-06-22</span>
+                            <span><i class="far fa-eye"></i> 24.5K阅读</span>
+                            <span><i class="far fa-comment"></i> 142评论</span>
+                        </div>
+                        <p>从理论到实践，构建高可用微服务系统的完整指南，包含服务拆分、通信机制与部署策略。</p>
+                        <a href="https://blog.csdn.net/qq_41697157/article/details/12345679" class="btn btn-outline">阅读全文</a>
                     </div>
                 </div>
                 
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-balance-scale"></i>
+                <!-- Doc 3 -->
+                <div class="doc-card">
+                    <div class="doc-image" style="background-image: url('https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')"></div>
+                    <div class="doc-content">
+                        <h3>TypeScript高级类型编程</h3>
+                        <div class="meta">
+                            <span><i class="far fa-calendar"></i> 2023-04-10</span>
+                            <span><i class="far fa-eye"></i> 8.3K阅读</span>
+                            <span><i class="far fa-comment"></i> 64评论</span>
+                        </div>
+                        <p>探索TypeScript类型系统的强大功能，包括条件类型、映射类型与类型推断的深度应用。</p>
+                        <a href="https://blog.csdn.net/qq_41697157/article/details/12345680" class="btn btn-outline">阅读全文</a>
                     </div>
-                    <div class="card-content">
-                        <h3>历史收益与反思</h3>
-                        <p>查看我的投资历史收益记录，包括成功经验和失败教训。投资是一个长期的学习和优化过程。</p>
-                        <a href="不构成任何投资建议的纯分享.pdf#page=6" class="btn" target="_blank">
-                            <i class="fas fa-history"></i>查看历史收益
-                        </a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://blog.csdn.net/qq_41697157?type=blog" class="btn" target="_blank">
+                    <i class="fas fa-book-open"></i> 查看所有技术文章
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Section -->
+    <section id="investment">
+        <div class="container">
+            <div class="section-header">
+                <h2>投资记录</h2>
+                <div class="divider"></div>
+                <p>价值投资实践与市场分析，所有文章发布于微信公众号</p>
+            </div>
+            
+            <div class="investment-container">
+                <!-- Investment 1 -->
+                <div class="investment-record">
+                    <div class="investment-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="investment-content">
+                        <h3>2023年科技股投资策略分析</h3>
+                        <span class="date">2023-09-05</span>
+                        <p>深度分析当前科技行业投资机会，重点关注AI、云计算和半导体领域，分享个人投资组合调整策略。</p>
+                        <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5ODY1MzEwOQ==&action=getalbum&album_id=3021590011209334786#wechat_redirect" class="btn btn-outline">阅读全文</a>
+                    </div>
+                </div>
+                
+                <!-- Investment 2 -->
+                <div class="investment-record">
+                    <div class="investment-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="investment-content">
+                        <h3>价值投资的核心原则与实践</h3>
+                        <span class="date">2023-07-18</span>
+                        <p>阐述价值投资的基本原则，分享如何识别被低估的优质企业，以及建立长期投资组合的方法。</p>
+                        <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5ODY1MzEwOQ==&action=getalbum&album_id=3021590011209334786#wechat_redirect" class="btn btn-outline">阅读全文</a>
+                    </div>
+                </div>
+                
+                <!-- Investment 3 -->
+                <div class="investment-record">
+                    <div class="investment-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <div class="investment-content">
+                        <h3>新兴市场投资机会与风险</h3>
+                        <span class="date">2023-05-12</span>
+                        <p>分析东南亚、印度等新兴市场的投资潜力，探讨不同行业的增长前景与风险评估框架。</p>
+                        <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5ODY1MzEwOQ==&action=getalbum&album_id=3021590011209334786#wechat_redirect" class="btn btn-outline">阅读全文</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 技术学习 -->
-    <section id="tech" style="background-color: #e6f2ff;">
-        <div class="container">
-            <div class="section-title">
-                <h2>技术学习</h2>
-                <p>探索人工智能前沿技术、模型原理和商业应用</p>
-            </div>
-            <div class="content-cards">
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3>AI模型技术解析</h3>
-                        <p>深入了解大语言模型的技术原理，包括预训练、监督微调和强化学习等关键概念。</p>
-                        <a href="关于AI的1%灵感 - 4月报.pdf" class="btn" target="_blank">
-                            <i class="fas fa-download"></i>查看完整PDF
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3>OpenAI模型演进</h3>
-                        <p>探索OpenAI各代模型的区别与发展路径，了解AGI的五个阶段和各模型的特点。</p>
-                        <a href="关于AI的1%灵感 - 4月报.pdf#page=1" class="btn" target="_blank">
-                            <i class="fas fa-book-open"></i>阅读模型演进
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3>商业认知与应用</h3>
-                        <p>了解AI在商业领域的应用前景和思考方式，积累对技术商业化的认知和理解。</p>
-                        <a href="关于AI的1%灵感 - 4月报.pdf#page=10" class="btn" target="_blank">
-                            <i class="fas fa-briefcase"></i>探索商业认知
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer>
+    <!-- Footer -->
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
-                    <h3>关于博客</h3>
-                    <p>这个博客分享我在算法开发和投资理财方面的经验与思考，记录个人成长历程。</p>
-                    <p>所有内容均为个人观点，不构成任何专业建议。</p>
-                </div>
-                <div class="footer-column">
-                    <h3>快速链接</h3>
-                    <ul>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> 关于我</a></li>
-                        <li><a href="#finance"><i class="fas fa-chevron-right"></i> 投资理财</a></li>
-                        <li><a href="#tech"><i class="fas fa-chevron-right"></i> 技术学习</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>资源下载</h3>
-                    <ul>
-                        <li><a href="不构成任何投资建议的纯分享.pdf" target="_blank"><i class="fas fa-file-pdf"></i> 投资理财PDF</a></li>
-                        <li><a href="关于AI的1%灵感 - 4月报.pdf" target="_blank"><i class="fas fa-file-pdf"></i> 技术学习PDF</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>联系我</h3>
-                    <p><i class="fas fa-envelope"></i> littlewhale@example.com</p>
-                    <div class="social-links" style="display: flex; gap: 15px; margin-top: 15px;">
-                        <a href="#" style="font-size: 1.5rem;"><i class="fab fa-github"></i></a>
-                        <a href="#" style="font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" style="font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                <div class="footer-col">
+                    <h3>关于我</h3>
+                    <p>全栈工程师、技术博主和价值投资者，致力于分享有价值的技术洞见与投资理念。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-weixin"></i></a>
                     </div>
                 </div>
+                
+                <div class="footer-col">
+                    <h3>快速链接</h3>
+                    <ul class="quick-links">
+                        <li><a href="#experience">工作经历</a></li>
+                        <li><a href="#tech-docs">技术文档</a></li>
+                        <li><a href="#investment">投资记录</a></li>
+                        <li><a href="#">个人项目</a></li>
+                        <li><a href="#">联系方式</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>联系方式</h3>
+                    <p><i class="fas fa-envelope"></i> alex.chen@example.com</p>
+                    <p><i class="fas fa-phone"></i> +86 138 8888 8888</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 北京市海淀区中关村</p>
+                </div>
             </div>
+            
             <div class="copyright">
-                <p>&copy; 2023 LittleWhale0531 的个人博客. 保留所有权利。</p>
+                <p>&copy; 2023 Alex Chen 个人博客. 保留所有权利</p>
             </div>
-        </div>
-        <div class="whale-animation">
-            <i class="fas fa-fish"></i>
         </div>
     </footer>
 
     <script>
-        // 移动端菜单切换
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
         
-        // 平滑滚动
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     window.scrollTo({
-                        top: target.offsetTop - 70,
+                        top: target.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // 更新活动链接
-                    document.querySelectorAll('.nav-links a').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    
-                    // 在移动设备上关闭菜单
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                    }
                 }
             });
-        });
-        
-        // 滚动时更新活动链接
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section, .hero');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id') || 'about';
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // 鲸鱼动画
-        const whales = document.querySelectorAll('.whale-animation');
-        whales.forEach((whale, index) => {
-            whale.style.animationDelay = `${index * 5}s`;
         });
     </script>
 </body>
